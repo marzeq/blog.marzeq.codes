@@ -1,0 +1,39 @@
+---
+import type { MarkdownInstance } from "astro"
+
+const posts: MarkdownInstance<MarkdownProps>[] = await Astro.glob("./posts/*.md")
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="title" content="blog.marzeq.codes" /> 
+		<meta name="description" content="blog.marzeq.codes" />
+		<meta name="robots" content="index, follow" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Language" content="en" />
+		<meta name="language" content="English" />
+		<title>blog.marzeq.codes</title>
+		<link rel="favicon" type="favicon" href="/favicon.ico" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	</head>
+	<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-mono">
+		<div class="px-6 py-8">
+			<h1 class="text-4xl font-bold border-b-2 border-gray-500 mb-6 pb-2">marzeq's blog</h1>
+
+			{posts.map((post, i) => (
+				<article class={`mb-6 ${i !== posts.length - 1 ? 'border-b-2 border-gray-500 pb-2' : ''}`}>
+					<h2 class="text-2xl font-semibold mb-3">{post.frontmatter.title}</h2>
+					<p class="mb-1">{post.frontmatter.description}</p>
+					<a class="text-blue-500 hover:text-blue-300 hover:underline transition duration-300" href={post.url}>Read more</a>
+				</article>
+			))}
+		</div>
+	</body>
+</html>
