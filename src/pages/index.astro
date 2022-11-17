@@ -25,7 +25,8 @@ const posts: MarkdownInstance<MarkdownProps>[] = await Astro.glob("./posts/*.md"
 	</head>
 	<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-mono">
 		<div class="px-6 py-8">
-			<h1 class="text-4xl font-bold border-b-2 border-gray-500 mb-6 pb-2">marzeq's blog</h1>
+			<a href="https://marzeq.codes/" class="text-xl font-medium underline hover:text-gray-600 dark:hover:text-gray-400 transition duration-300">Main site</a>
+			<h1 class="text-4xl font-bold border-b-2 border-gray-500 mt-8 mb-6 pb-2">marzeq's blog</h1>
 
 			{posts.map((post, i) => (
 				<article class={`mb-6 ${i !== posts.length - 1 ? 'border-b-2 border-gray-500 pb-2' : ''}`}>
