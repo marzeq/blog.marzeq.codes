@@ -266,6 +266,8 @@ client.commands.set("ping", {
 })
 ```
 
+### Testing the command
+
 If everything went well, you should now be able to execute the command in your Discord server.
 
 Go to your Discord server and type `/ping`. You should see the bot reply with `Pong!`.
@@ -287,13 +289,30 @@ client.on("reactionAdd", async (reaction, user) => {
 })
 ```
 
+### Specifying intents
+
+If you try to run the bot now, you notice that it does not work. This is because we are not specifying the intents that we want to use. We can do this by adding the following code to the client options in the `client` declaration in the `src/index.ts` file:
+
+```ts
+  intents: ["Guilds", "GuildMessageReactions"]
+```
+
+If you are confused about what intents are, you can read more about them [here](https://discordjs.guide/popular-topics/intents.html).
+
+### Testing the event
+
 If everything went well, you should now be able to test the event in your Discord server.
 
 Go to your Discord server and add a 👍 reaction to a message. You should see the bot add another 👍 reaction to the message.
 
 ## More advanced stuff
 
-If you want to do more advanced things, like adding command autocomplete, I will leave that as an exercise for you. You can also check out the [discord.js documentation](https://discord.js.org/#/docs/main/stable/general/welcome) for more information.
+If you want to do more advanced things, like adding command autocomplete, I will leave that as an exercise for you.
+
+A few useful resources to learn what's possible:
+- [The official Discord API documentation](https://discord.com/developers/docs/intro)
+- [The discord.js guide](https://discordjs.guide/)
+- [The discord.js documentation](https://discord.js.org/#/docs/main/stable/general/welcome)
 
 If you prefer to piggyback off of my code, stay tuned, because I will also be making a more advanced tutorial in the future, along with a GitHub template repository.
 
@@ -305,7 +324,8 @@ If you need help with discord.js, the guys have [their own Discord server](https
 
 ## Resources
 
+- [Official Discord API documentation](https://discord.com/developers/docs/intro)
 - [discord.js documentation](https://discord.js.org/#/docs/main/stable/general/welcome)
 - [discord.js Discord server](https://discord.gg/bRCvFy9)
 - [discord.js GitHub repository](https://github.com/discordjs/discord.js)
-- [my TypeScript template repository](https://github.com/marzeq/typescript-template)
+- [My TypeScript template repository](https://github.com/marzeq/typescript-template)
