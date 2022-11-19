@@ -246,8 +246,6 @@ public async start() {
 }
 ```
 
-This method will set all the commands in the `commands` property and then log in.
-
 Now replace the `client.login` call in the `main` function with `client.start()`.
 
 Great! Now we can start creating commands.
@@ -267,8 +265,6 @@ client.commands.set("ping", {
   }
 })
 ```
-
-This will create a command called `ping` that will reply with `Pong!` when executed.
 
 If everything went well, you should now be able to execute the command in your Discord server.
 
@@ -290,8 +286,6 @@ client.on("reactionAdd", async (reaction, user) => {
   await reaction.message.react("👍")
 })
 ```
-
-What this code does is that it will add a 👍 reaction to every message that has a 👍 reaction added to it, essentially doubling the count for the 👍 reaction.
 
 If everything went well, you should now be able to test the event in your Discord server.
 
