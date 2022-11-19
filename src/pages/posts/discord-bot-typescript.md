@@ -5,15 +5,24 @@ description: In this article, we will be writing a Discord bot in TypeScript. We
 date: 2022-11-19:13:06
 ---
 
-# Writing a Discord Bot in TypeScript
+# In this article we will
 
-In this article we will:
 - Create a Discord application on the Discord Developer Portal
 - Setup a blank TypeScript project
 - Setup the discord.js library to process slash commands and events
 - Create a "module"
 - Add commands to the module
 - Add events to the module
+
+## Who is this article for?
+
+Before proceeding, you should have a good understanding of JavaScript and TypeScript. Basic knowledge of how Discord works in general is also recommended.
+
+Basically, I'm aiming for people who have written a fair bit amount of TypeScript, but are new to Discord bots.
+
+If you're new to TypeScript and JavaScript, I recommend you learn JavaScript and do a few projects before proceeding. Then you can learn TypeScript and do a few more projects. If you do all of that, you're worthy (lol) of reading this article.
+
+discord.js is a fairly complex libary, and if you're just a begginer, it might trip you up a lot. That's why I recommend you to do other projects first.
 
 ## Code
 
