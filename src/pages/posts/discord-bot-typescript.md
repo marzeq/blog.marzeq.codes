@@ -145,11 +145,11 @@ For this tutorial, we will also be using the first option.
 Append the following code to the `src/index.ts` file just above the `main` function:
 
 ```ts
-export type Module = {
+export type Module = Promise<{
   default: (client: Bot) => Awaitable<any>
 } | {
   module: (client: Bot) => Awaitable<any>
-}
+}>
 
 const loadModules = async (modules: Module[]) => {
   for (const module of modules) {
@@ -179,9 +179,9 @@ Create a new file called `src/modules/example.ts`. This will be our example modu
 Add the following code to the file:
 
 ```ts
-import { BotType } from "../index"
+import { BotType, Module } from "../index"
 
-export default async (client: BotType) => {
+export const module: Module = async (client: BotType) => {
   console.log("Example module loaded")
 }
 ```
