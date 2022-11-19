@@ -15,6 +15,10 @@ In this article we will:
 - Add commands to the module
 - Add events to the module
 
+## Code
+
+All of the code for this article can be found on [GitHub](https://github.com/marzeq/djs-tut-example). Each commit represents a step in the tutorial.
+
 ## Creating a Discord application
 
 First, head over to the [Discord Developer Portal](https://discord.com/developers/applications).
