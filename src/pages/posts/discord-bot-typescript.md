@@ -95,9 +95,8 @@ Edit the `src/index.ts` file and add the following code:
 
 ```ts
 import { Client, Collection, Awaitable, ChatInputApplicationCommandData } from "discord.js"
-import { config } from "dotenv"
 
-config()
+import("dotenv/register") // load environment variables
 
 class Bot extends Client {
   public protected commands = new Collection<string, Command>()
