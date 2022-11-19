@@ -1,4 +1,5 @@
 ---
+import BaseLayout from "./BaseLayout.astro"
 import type { MarkdownLayoutProps } from "astro"
 
 const { frontmatter } = Astro.props
@@ -13,113 +14,99 @@ const formattedDate = date.toLocaleString("en-GB", {
   day: "numeric",
   timeZoneName: "short",
   minute: "numeric",
-  hour: "numeric"
+  hour: "numeric",
+  timeZone: "Europe/Warsaw"
 })
 ---
-<html>
-  <head>
-    <title>{frontmatter.title} | blog.marzeq.codes</title>
-    <meta name="title" content={`${frontmatter.title} | blog.marzeq.codes`} />
-    <meta name="description" content={frontmatter.description} />
-    <meta name="keywords" content={frontmatter.keywords} />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  </head>
-  <body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-mono">
-    <div class="px-6 py-2">
-      <div class="border-b-2 border-gray-500 flex flex-col gap-3 my-6 pb-4">
-        <a href="/" class="text-xl font-medium underline mb-6 hover:text-gray-600 dark:hover:text-gray-400 transition duration-300">Go back</a>
-        <h1 class="text-4xl font-bold">{frontmatter.title}</h1>
-        <h3 class="text-xl font-medium">Written on: {formattedDate}</h3>
-      </div>
+<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+  <div class="border-b-2 border-gray-500 flex flex-col gap-3 my-6 pb-4">
+    <a href="/" class="text-xl font-medium underline mb-6 hover:text-gray-600 dark:hover:text-gray-400 transition duration-300">Go back</a>
+    <h1 class="text-4xl font-bold">{frontmatter.title}</h1>
+    <h3 class="text-xl font-medium">Written on: {formattedDate}</h3>
+  </div>
 
-      <div id="markdown">
-        <slot />
-      </div>
-      <style is:global>
-        #markdown p {
-          @apply text-base font-normal my-4;
-        }
+  <div id="markdown">
+    <slot />
+  </div>
+  <style is:global>
+    #markdown p {
+      @apply text-base font-normal my-4;
+    }
 
-        #markdown h1 {
-          @apply text-2xl font-bold mt-6 mb-2;
-        }
+    #markdown h1 {
+      @apply text-2xl font-bold mt-6 mb-2;
+    }
 
-        #markdown h2 {
-          @apply text-xl font-bold mt-5 mb-2;
-        }
+    #markdown h2 {
+      @apply text-xl font-bold mt-5 mb-2;
+    }
 
-        #markdown h3 {
-          @apply text-lg font-bold mt-4 mb-2;
-        }
-        
-        #markdown h4 {
-          @apply text-base mt-3 mb-2;
-        }
+    #markdown h3 {
+      @apply text-lg font-bold mt-4 mb-2;
+    }
+    
+    #markdown h4 {
+      @apply text-base mt-3 mb-2;
+    }
 
-        #markdown h5 {
-          @apply text-sm mt-2 mb-2;
-        }
+    #markdown h5 {
+      @apply text-sm mt-2 mb-2;
+    }
 
-        #markdown h6 {
-          @apply text-xs mt-1 mb-2;
-        }
+    #markdown h6 {
+      @apply text-xs mt-1 mb-2;
+    }
 
-        #markdown ul {
-          @apply list-disc list-inside;
-        }
+    #markdown ul {
+      @apply list-disc list-inside;
+    }
 
-        #markdown ol {
-          @apply list-decimal list-inside;
-        }
+    #markdown ol {
+      @apply list-decimal list-inside;
+    }
 
-        #markdown h1, #markdown h2, #markdown h3, #markdown h4, #markdown h5, #markdown h6 {
-          @apply border-b-2 dark:border-gray-700 border-gray-300;
-        }
+    #markdown h1, #markdown h2, #markdown h3, #markdown h4, #markdown h5, #markdown h6 {
+      @apply border-b-2 dark:border-gray-700 border-gray-300;
+    }
 
-        #markdown li {
-          @apply my-2;
-        }
+    #markdown li {
+      @apply my-2;
+    }
 
-        #markdown a {
-          @apply text-blue-500 underline hover:text-blue-600 dark:hover:text-blue-400 transition duration-300;
-        }
+    #markdown a {
+      @apply text-blue-500 underline hover:text-blue-600 dark:hover:text-blue-400 transition duration-300;
+    }
 
-        #markdown blockquote {
-          @apply border-l-4 border-gray-300 pl-4 italic;
-        }
+    #markdown blockquote {
+      @apply border-l-4 border-gray-300 pl-4 italic;
+    }
 
-        #markdown pre {
-          @apply p-4 rounded-xl;
-        }
+    #markdown pre {
+      @apply p-4 rounded-xl;
+    }
 
-        #markdown code {
-          @apply p-1 rounded-xl bg-gray-200 dark:bg-gray-800;
-        }
+    #markdown code {
+      @apply p-1 rounded-xl bg-gray-200 dark:bg-gray-800;
+    }
 
-        #markdown pre code {
-          @apply bg-inherit p-0;
-        }
+    #markdown pre code {
+      @apply bg-inherit p-0;
+    }
 
-        #markdown table {
-          @apply border-collapse border border-gray-300;
-        }
+    #markdown table {
+      @apply border-collapse border border-gray-300;
+    }
 
-        #markdown table thead tr th {
-          @apply border border-gray-300 p-2;
-        }
+    #markdown table thead tr th {
+      @apply border border-gray-300 p-2;
+    }
 
-        #markdown table tbody tr td {
-          @apply border border-gray-300 p-1;
-        }
+    #markdown table tbody tr td {
+      @apply border border-gray-300 p-1;
+    }
 
-        #markdown img {
-          @apply max-h-64 rounded-xl;
-        }
-      </style>
-    </div>
-  </body>
-</html>
+    #markdown img {
+      @apply max-h-64 rounded-xl;
+    }
+  </style>
+</BaseLayout>
