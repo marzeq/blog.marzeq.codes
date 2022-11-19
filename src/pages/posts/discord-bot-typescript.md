@@ -281,6 +281,21 @@ If everything went well, you should now be able to test the event in your Discor
 
 Go to your Discord server and add a 👍 reaction to a message. You should see the bot add another 👍 reaction to the message.
 
+## More advanced stuff
+
+If you want to do more advanced things, like adding command autocomplete, I will leave that as an exercise for you. You can also check out the [discord.js documentation](https://discord.js.org/#/docs/main/stable/general/welcome) for more information.
+
+If you prefer to piggyback off of my code, stay tuned, because I will also be making a more advanced tutorial in the future, along with a GitHub template repository.
+
 ## Conclusion
 
 That's it for this tutorial. I hope you learned something new. If you have any questions, feel free to contact me through Twitter or Discord. Contact links are on my [main website](https://marzeq.codes/).
+
+If you need help with discord.js, the guys have [their own Discord server](https://discord.gg/bRCvFy9) where you can ask questions.
+
+## Resources
+
+- [discord.js documentation](https://discord.js.org/#/docs/main/stable/general/welcome)
+- [discord.js Discord server](https://discord.gg/bRCvFy9)
+- [discord.js GitHub repository](https://github.com/discordjs/discord.js)
+- [my TypeScript template repository](https://github.com/marzeq/typescript-template)
