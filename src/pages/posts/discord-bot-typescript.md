@@ -94,12 +94,13 @@ Replace `[your token]` with your token. The quotes are optional, but I recommend
 Edit the `src/index.ts` file and add the following code:
 
 ```ts
-import { Client, Collection, Awaitable, ChatInputApplicationCommandData } from "discord.js"
+import { Client, Collection, Awaitable, ChatInputApplicationCommandData, ChatInputCommandInteraction } from "discord.js"
+import dotenv from "dotenv"
 
-import("dotenv/register") // load environment variables
+dotenv.config()
 
 class Bot extends Client {
-  public protected commands = new Collection<string, Command>()
+  public readonly commands = new Collection<string, Command>()
 }
 
 export type BotType = Bot
@@ -109,7 +110,9 @@ export interface Command extends ChatInputApplicationCommandData {
 }
 
 const main = async () => {
-  const client = new Bot()
+  const client = new Bot({
+    intents: ["Guilds"]
+  })
 
   if (!("TOKEN" in process.env)) {
     throw new Error("No token provided")
@@ -150,12 +153,12 @@ export type Module = Promise<{
   module: (client: Bot) => Awaitable<any>
 }>
 
-const loadModules = async (modules: Module[]) => {
-  for (const module of modules) {
+const loadModules = async (modules: Module[], client: Bot) => {
+  for (const module of await Promise.all(modules)) {
     if ("default" in module) {
-      await module.default(client)
+      module.default(client)
     } else {
-      await module.module(client)
+      module.module(client)
     }
   }
 }
@@ -166,7 +169,7 @@ Now, in the `main` function below the `client` declaration, add the following co
 ```ts
 await loadModules([
   import("./modules/example"),
-])
+], client)
 ```
 
 This will load the `example` module. Now we have to create the module.
@@ -178,9 +181,9 @@ Create a new file called `src/modules/example.ts`. This will be our example modu
 Add the following code to the file:
 
 ```ts
-import { BotType, Module } from "../index"
+import { BotType } from "../index"
 
-export const module: Module = async (client: BotType) => {
+export const module = async (client: BotType) => {
   console.log("Example module loaded")
 }
 ```
@@ -206,7 +209,7 @@ public async start() {
   await this.application?.commands.set(Array.from(this.commands.values()))
 
   this.on("interactionCreate", async interaction => {
-    if (!interaction.isCommand()) return
+    if (!interaction.isChatInputCommand()) return
 
     const command = this.commands.get(interaction.commandName)
 
@@ -248,7 +251,7 @@ client.commands.set("ping", {
   description: "Pong!",
   run: async interaction => {
     await interaction.reply("Pong!")
-  },
+  }
 })
 ```
 
